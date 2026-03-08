@@ -26,11 +26,8 @@ function addBookToLibrary(title, author, pages, read, coverUrl) {
   myLibrary.push(book);
 }
 
-const libraryContainer = document.getElementById("library");
-
-function displayLibrary() {
-  myLibrary.forEach((book) => {
-    const bookCard = document.createElement("div");
+function createBookCard(book) {
+  const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
     bookCard.dataset.id = book.id;
     bookCard.innerHTML = `
@@ -45,7 +42,14 @@ function displayLibrary() {
       </div>
       <button type="button" class="deleteBookButton" data-book-id="${book.id}">Delete</button>
       `;
+  return bookCard;
+};
 
+const libraryContainer = document.getElementById("library");
+
+function displayLibrary() {
+  myLibrary.forEach((book) => {
+    const bookCard = createBookCard(book);
     libraryContainer.appendChild(bookCard);
   });
 };
