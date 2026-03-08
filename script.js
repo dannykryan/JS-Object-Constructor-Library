@@ -1,8 +1,26 @@
 const myLibrary = [];
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true, "https://covers.openlibrary.org/b/id/6979861-L.jpg");
-addBookToLibrary("The Lord of the Rings", "J.R.R. Tolkien", 1178, false, "https://covers.openlibrary.org/b/id/15131000-L.jpg");
-addBookToLibrary("The Silmarillion", "J.R.R. Tolkien", 365, false, "https://covers.openlibrary.org/b/id/6719384-L.jpg");
+addBookToLibrary(
+  "The Hobbit",
+  "J.R.R. Tolkien",
+  295,
+  true,
+  "https://covers.openlibrary.org/b/id/6979861-L.jpg",
+);
+addBookToLibrary(
+  "The Lord of the Rings",
+  "J.R.R. Tolkien",
+  1178,
+  false,
+  "https://covers.openlibrary.org/b/id/15131000-L.jpg",
+);
+addBookToLibrary(
+  "The Silmarillion",
+  "J.R.R. Tolkien",
+  365,
+  false,
+  "https://covers.openlibrary.org/b/id/6719384-L.jpg",
+);
 
 function Book(title, author, pages, read, coverUrl) {
   if (!new.target) {
@@ -16,7 +34,7 @@ function Book(title, author, pages, read, coverUrl) {
   this.coverUrl = coverUrl;
 }
 
-Book.prototype.toggleRead = function() {
+Book.prototype.toggleRead = function () {
   this.read = !this.read;
 };
 
@@ -28,9 +46,9 @@ function addBookToLibrary(title, author, pages, read, coverUrl) {
 
 function createBookCard(book) {
   const bookCard = document.createElement("div");
-    bookCard.classList.add("book-card");
-    bookCard.dataset.id = book.id;
-    bookCard.innerHTML = `
+  bookCard.classList.add("book-card");
+  bookCard.dataset.id = book.id;
+  bookCard.innerHTML = `
       <img class="book-cover" src="${book.coverUrl}" alt="Book Cover">
       <h2>${book.title}</h2>
       <p>Author: ${book.author}</p>
@@ -43,7 +61,7 @@ function createBookCard(book) {
       <button type="button" class="deleteBookButton" data-book-id="${book.id}">Delete</button>
       `;
   return bookCard;
-};
+}
 
 const libraryContainer = document.getElementById("library");
 
@@ -52,7 +70,7 @@ function displayLibrary() {
     const bookCard = createBookCard(book);
     libraryContainer.appendChild(bookCard);
   });
-};
+}
 
 displayLibrary();
 
@@ -65,7 +83,7 @@ function deleteBook(bookId) {
   if (bookIndex !== -1) {
     myLibrary.splice(bookIndex, 1);
   }
-};
+}
 
 function updateReadStatus(bookId) {
   console.log(bookId);
@@ -74,7 +92,7 @@ function updateReadStatus(bookId) {
       book.read = !book.read;
     }
   });
-};
+}
 
 submitButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -104,5 +122,3 @@ libraryContainer.addEventListener("change", (e) => {
     book.toggleRead();
   }
 });
-
-
