@@ -14,11 +14,11 @@ function Book(title, author, pages, read, coverUrl) {
   this.pages = pages;
   this.read = read;
   this.coverUrl = coverUrl;
-
-  Book.prototype.toggleRead = function() {
-    this.read = !this.read;
-  };
 }
+
+Book.prototype.toggleRead = function() {
+  this.read = !this.read;
+};
 
 function addBookToLibrary(title, author, pages, read, coverUrl) {
   const book = new Book(title, author, pages, read, coverUrl);
